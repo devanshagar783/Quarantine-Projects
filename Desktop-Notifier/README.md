@@ -1,4 +1,4 @@
 # Desktop-Notifier
 A desktop notifier app made in python.
 
-:hammer:Still under construction.
+It shows breaking news as a notification.
