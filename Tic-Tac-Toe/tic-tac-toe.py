@@ -1,6 +1,3 @@
-"""
-    Created by Devansh on 11-08-2020
-"""
 import random
 from time import sleep
 
@@ -39,9 +36,9 @@ def chance(player):
 def computer(player):
     moves = [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]]
     x, y = moves[random.randrange(0, 8)]
-    if board[x - 1][y - 1] != " ":
+    while board[x][y] != " ":
         x, y = moves[random.randrange(0, 8)]
-    board[x - 1][y - 1] = player
+    board[x][y] = player
     sleep(1)
     displayBoard()
 
@@ -52,7 +49,12 @@ print("Enter 2 to play against your player i.e a 2 player game")
 play = int(input("Enter your choice:")) - 1
 
 board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
-player1 = input("Player 1, what do you choose?(X/O) :")
+
+name1 = input("Enter name of player 1")
+if play == 1:
+    name2 = input("Enter name of player 2")
+
+player1 = input(name1 + ", what do you choose?(X/O) :")
 while player1 != "X" and player1 != "O":
     print("Wrong input! Please try again")
     player1 = input("What do you choose?(X/O) :")
@@ -65,16 +67,16 @@ entry = 9
 running = True
 
 while running:
-    print("It's player 1's turn, enter the row and column number, separated by spaces, where you want to put your "
+    print("It's " + name1 + "'s turn, enter the row and column number, separated by spaces, where you want to put your "
           "piece:")
     chance(player1)
     displayBoard()
     entry -= 1
     if isWinning(player1):
-        print("Player 1 won!!!")
+        print(name1 + " won!!!")
         break
     if entry == 0:
-        print("DRAW!!!")
+        print("IT's A DRAW!!!")
         break
 
     if play == 0:
@@ -86,13 +88,13 @@ while running:
             break
 
     elif play == 1:
-        print("It's player 2's turn, enter the row and column number, separated by spaces, where you want to put your "
-              "piece:")
+        print("It's " + name2 + "'s turn, enter the row and column number, separated by spaces, where you want to put "
+                                "your piece:")
         chance(player2)
         displayBoard()
         entry -= 1
         if isWinning(player2):
-            print("Player 2 won!!!")
+            print(name2 + " won!!!")
             break
 
 print("Thank you for playing.")
